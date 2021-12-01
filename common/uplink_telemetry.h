@@ -15,26 +15,26 @@ struct uplink_telemetry {
 
 // Commands to send data 
 struct uplink_data {
-    void send_tle_data(int tle_data);       // Send the TLE data
+    void send_tle_data(long tle_data);       // Send the TLE data
     void request_data();                    // Request for telemetry data
 };
 
 // Commands from MCC for selfie_pass
 struct selfie_pass {
-    void new_selfie_pass(float longitude, float attitude, int time, int roll_angle, int passcode);     // Some parameters to take the selfie
+    void new_selfie_pass(float longitude, float attitude, long timestamp, long roll_angle, long passcode);     // Some parameters to take the selfie
 };
 
 // Commands during emergencies
 struct emergency_control {
     void reboot_obc();                      // CDH emergency command to reboot the OBC
-    void power_cutoff(int cutoff_type);     // EPS emergency command to cut off power to some payload/subsystem
+    void power_cutoff(long cutoff_type);     // EPS emergency command to cut off power to some payload/subsystem
     void detumble();                        // ADCS Emergency command to instruct manual detumbling
 };
 
 // Commands for the QEYnet project
 struct uplink_QEYnet {
     void ping();                        // Ping the OBC to check if it is still connected to the laser
-    void send_packet(int packet);       // Send a packet and wait for a response packet
+    void send_packet(long packet);       // Send a packet and wait for a response packet
     void idle();                        // Instruct the module to enter idle mode
     void laser_on();                    // Instruct the laser to turn on
     void laser_off();                   // Instruct the laser to turn off
@@ -42,12 +42,12 @@ struct uplink_QEYnet {
 
 // Commands when 48 hours has passed since the last encrypted communication
 struct unencrypted_command {
-    void set_new_key(int key);          // Set up new encryption keys with the CubeSat
+    void set_new_key(long key);          // Set up new encryption keys with the CubeSat
 };
 
 // Commands for the ARO
 struct uplink_aro {
-    void establish_connection(int passcode);    // Send the passcode to establish connection
+    void establish_connection(long passcode);    // Send the passcode to establish connection
     void take_selfie();                         // Instruct the CubeSat to take a selfie
 };
 
